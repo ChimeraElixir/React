@@ -3,33 +3,39 @@ import ReactDOM from 'react-dom/client'
 
 import './index.css';
 
-const firstBook ={
-  image:'https://m.media-amazon.com/images/I/419aJfhczCL._SY445_SX342_.jpg',
-  title:'Atomic habit',
-  author:'James Clear',
-}
-const secondBook ={
-  image:'https://m.media-amazon.com/images/I/41656QTKoZL._SY445_SX342_.jpg',
-  title:'King of Sloth',
-  author:'Ana Huang',
-}
+const books=[
+    {
+      img:'https://m.media-amazon.com/images/I/419aJfhczCL._SY445_SX342_.jpg',
+      title:'Atomic habit',
+      author:'James Clear',
+    },
+    {
+      img:'https://m.media-amazon.com/images/I/41656QTKoZL._SY445_SX342_.jpg',
+      title:'King of Sloth',
+      author:'Ana Huang',
+    }
+];
 
 const BookList = () => {
 
     return (
       <section className='booklist'>
-        <Book image={firstBook.image} title={firstBook.title} author={firstBook.author}></Book>
-        <Book image={secondBook.image} title={secondBook.title} author={secondBook.author}></Book>
+        {
+          books.map((book)=>{
+            const {img,title,author} = book;
+            return <Book img={img} title={title} author={author}/>;
+          })
+        }
         
       </section>
-    )
+    );
 
 };
 
 const Book = (props) => {
   return (
       <article className='book'>
-          <img src={props.image} alt={props.title}></img>
+          <img src={props.img} alt={props.title}></img>
           <h2>{props.title}</h2>
           <h4>{props.author}</h4>
       </article>
