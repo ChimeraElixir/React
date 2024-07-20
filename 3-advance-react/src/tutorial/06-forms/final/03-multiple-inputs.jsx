@@ -1,9 +1,9 @@
 import { useState } from 'react';
 const MultipleInputs = () => {
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {

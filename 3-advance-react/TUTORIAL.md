@@ -1481,8 +1481,9 @@ const List = () => {
   return (
     <div>
       {people.map((person) => {
-        return <Person key={person.name} {...person} />;
-      })}
+        ope
+
+      } )}
     </div>
   );
 };
