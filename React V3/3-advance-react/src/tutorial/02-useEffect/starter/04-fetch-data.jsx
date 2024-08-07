@@ -1,31 +1,29 @@
-import { useEffect,useState } from "react";
-const url = 'https://api.github.com/users';
-
+import { useEffect, useState } from "react"
+const url = "https://api.github.com/users"
 
 const FetchData = () => {
+  const [users, setUsers] = useState([])
 
-  const [users,setUsers]= useState([]);
-
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
-        const users = await response.json();
-        setUsers(users);
+        const response = await fetch(url)
+        const users = await response.json()
+        setUsers(users)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
-    fetchData();
-  },[]);
+    fetchData()
+  }, [])
 
   return (
     <section>
       <h3>Github Users</h3>
       <ul className="users">
-        {users.map((user)=>{
+        {users.map((user) => {
           const { id, login, avatar_url, html_url } = user
-          return(
+          return (
             <li key={id}>
               <img src={avatar_url} alt={login} />
               <div>
@@ -37,6 +35,6 @@ const FetchData = () => {
         })}
       </ul>
     </section>
-  );
-};
-export default FetchData;
+  )
+}
+export default FetchData

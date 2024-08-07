@@ -1,11 +1,11 @@
-import ReducerBasics from "./tutorial/10-useReducer/starter/01-useReducer"
 
+import Starter from "./tutorial/02-useEffect/starter/04-fetch-data"
 
 
 function App() {
   return (
     <div className="container">
-      <ReducerBasics/>
+      <Starter/>
     </div>
   )
 }
