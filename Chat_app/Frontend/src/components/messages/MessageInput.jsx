@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { useState } from "react"
 import { BiSolidSend } from "react-icons/bi"
+import useSendMessage from "../../hooks/useSendMessage"
 
 const MessageInput = () => {
+  const { sendMessage, loading } = useSendMessage()
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!message) return
+    await sendMessage(message)
+    setMessage("")
+  }
+
   return (
-    <form className='px-4 my-3'>
-        <div className='width-full relative'>
-            <input type="text" className='border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white' placeholder='Write a message...'/>
+    <form className="px-4 my-3" onSubmit={handleSubmit}>
+      <div className="width-full relative">
+        <input
+          type="text"
+          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+          placeholder="Write a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
 
-            <button type='submit' className=' absolute inset-y-0 end-0 flex items-center pe-3'>
-                <BiSolidSend />
-            </button>
-
-        </div>
+        <button
+          type="submit"
+          className=" absolute inset-y-0 end-0 flex items-center pe-3"
+        >
+          {loading ? (
+            <span className="loading loading-spinner"></span>
+          ) : (
+            <BiSolidSend />
+          )}
+        </button>
+      </div>
     </form>
   )
 }

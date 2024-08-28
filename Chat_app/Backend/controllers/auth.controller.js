@@ -22,7 +22,12 @@ export const Login = async (req, res) => {
 
     generateTokenAndSetCookie(user._id, res)
 
-    res.status(200).json({ message: "Login successful" })
+    res.status(200).json({
+      id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      profilePic: user.profilePic,
+    })
   } catch (error) {
     console.log("Error in Logout", error.message)
     res.status(500).json({ error: "Internal Server Error" })
