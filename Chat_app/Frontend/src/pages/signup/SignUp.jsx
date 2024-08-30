@@ -4,25 +4,24 @@ import { Link } from "react-router-dom"
 import useSignUp from "../../hooks/useSignUp"
 
 const SignUp = () => {
-
   const [inputs, setInput] = useState({
-    fullName:'',
-    username:'',
-    password:'',
-    confirmPassword:'',
-    gender:'',
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
   })
 
-  const handleCheckBoxChange = (gender)=>{
-    setInput({...inputs,gender:gender})
+  const handleCheckBoxChange = (gender) => {
+    setInput({ ...inputs, gender: gender })
   }
 
-  const handleChange = (e)=>{
-    setInput({...inputs,[e.target.name]:e.target.value})
+  const handleChange = (e) => {
+    setInput({ ...inputs, [e.target.name]: e.target.value })
   }
 
-  const {loading,signup}= useSignUp()
-  const handleSubmit = async (e)=>{
+  const { loading, signup } = useSignUp()
+  const handleSubmit = async (e) => {
     e.preventDefault()
     await signup(inputs)
   }
@@ -32,7 +31,13 @@ const SignUp = () => {
       <div className="w-full p-6 border-gray-700 rounded-md   border ">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           SignUp
-          <span className="text-blue-500"> ChatApp</span>
+          <span className="text-blue-500">
+            {" "}
+            Yapp
+            <h4 className="text-xs text align-items-center item-center justify-center pb-2 text-gray-500">
+              Because There's Always More to Say
+            </h4>
+          </span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -91,18 +96,25 @@ const SignUp = () => {
             />
           </div>
 
-          <GenderCheckbox  onCheckBoxChange={handleCheckBoxChange} selectedGender={inputs.gender}/>
+          <GenderCheckbox
+            onCheckBoxChange={handleCheckBoxChange}
+            selectedGender={inputs.gender}
+          />
 
           <Link
             className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
-            to='/login'
+            to="/login"
           >
             Already have an account?
           </Link>
 
           <div>
             <button className="btn btn-block btn-info mt-4" disabled={loading}>
-              {loading ? <span className="loading loading-spinner"></span>  : "Sign Up"}
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>

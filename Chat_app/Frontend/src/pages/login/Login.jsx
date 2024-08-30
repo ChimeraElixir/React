@@ -17,7 +17,13 @@ const Login = () => {
       <div className="w-full p-6 border-gray-700 rounded-md border ">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-blue-500"> ChatApp</span>
+          <span className="text-blue-500">
+            {" "}
+            Yapp
+            <h4 className="text-xs text align-items-center item-center justify-center pb-2 text-gray-500">
+              Because There's Always More to Say
+            </h4>
+          </span>
         </h1>
 
         <form onSubmit={handleSubmit}>
