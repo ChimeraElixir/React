@@ -3,18 +3,18 @@ import { extractTime } from "../../utils/extractTime"
 import useConversation from "../../zustand/useConversation"
 
 const Message = ({ message }) => {
-  console.log(message)
   const { authUser } = useAuthContext()
   const { selectedConversation } = useConversation()
-  const fromMe = message.senderId !== authUser._id
+  const fromMe = message.senderId === authUser._id
   const formattedTime = extractTime(message.createdAt)
   const chatClassName = fromMe ? "chat-end" : "chat-start"
   const profilePic = fromMe
     ? authUser.profilePic
     : selectedConversation?.profilePic
+  const shouldShake = message.shouldShake ? "shake" : ""
 
   return (
-    <div className={`chat ${chatClassName}`}>
+    <div className={`chat ${chatClassName} $`}>
       {fromMe ? (
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -27,15 +27,14 @@ const Message = ({ message }) => {
       ) : (
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src={selectedConversation?.profilePic}
-            />
+            <img alt="Tailwind CSS chat bubble component" src={profilePic} />
           </div>
         </div>
       )}
       <div
-        className={`chat-bubble text-white ${fromMe ? "bg-blue-500" : ""} pb-2`}
+        className={`chat-bubble text-white ${
+          fromMe ? "bg-blue-500" : ""
+        } ${shouldShake} pb-2`}
       >
         {message.message}
       </div>
